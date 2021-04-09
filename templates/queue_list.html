@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ user }}
+    <br/>
+    {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'user_profile:logout' %}">Logout</a>
+    {% else %}
+        <a class="btn btn-default" href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
+    {% endif %}
+
+    <br/>
+
+    {{ user.get_full_name }}
+
+    <br/>
+
+    {% for group in groups %}
+        <div>{{ group.name }}</div>
+    {% endfor %}
+    <br/>
+
+    <button type="button" class="button is-primary open-modal" data-target="#create-group-modal">Створити нову групу</button>
+
+    {% include 'modals/create_group.html' with form=create_group_form %}
+{% endblock content %}

@@ -1,0 +1,11 @@
+<div class="field is-horizontal columns mb-4">
+    <div class="column is-2 mb-4">
+        <label class="label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+    </div>
+    <div class="control">
+        {% autoescape off %}
+            {% firstof field_display field %}
+        {% endautoescape %}
+    </div>
+    {{ field.errors }}
+</div>
